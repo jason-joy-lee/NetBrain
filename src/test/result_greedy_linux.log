@@ -1,3 +1,4 @@
+Config file ProbeScheduler.config missing
 
 Test: File Not Exist, resource cap=13, file name=./test_data_xyz.csv...
 Failed to open file ./test_data_xyz.csv
@@ -14,7 +15,7 @@ Set Probe Scheduler cap -1 failed-1 Resource Cap --> PASS
 Test: 0 Resource Cap, resource cap=0, file name=test_data_1.csv...
 resource capability was set to 0
 Warning! There is no probes or resource
-Algorithm time(second)=0.0000, starting clock=2, finishing clock=2
+Algorithm time(second)=0.0000, starting clock=2160, finishing clock=2167
 dump selected probes, test case name=0 Resource Cap:
 0 Resource Cap --> PASS
 
@@ -24,18 +25,18 @@ Set Probe Scheduler cap 100001 faileddump selected probes, test case name=Over R
 Over Resource Cap --> PASS
 
 Test: normal_scenario_small_3_5, resource cap=5, file name=./test_data_2.csv...
-Algorithm time(second)=0.0000, starting clock=2, finishing clock=2
+Algorithm time(second)=0.0000, starting clock=2224, finishing clock=2245
 dump selected probes, test case name=normal_scenario_small_3_5:
 p3	3	120
 p2	2	100
 normal_scenario_small_3_5 --> PASS
 
 Test: performance_test_10000_1000, resource cap=1000, file name=./performance_test_10000_1000.csv...
-Algorithm time(second)=0.0000, starting clock=773, finishing clock=787
+Algorithm time(second)=0.0000, starting clock=15968, finishing clock=16191
 dump selected probes, test case name=performance_test_10000_1000:
-P5431	999	1498
+P1403	997	1495
 
 Test: performance_test_100000_10000, resource cap=10000, file name=./performance_test_100000_10000.csv...
-Algorithm time(second)=0.0000, starting clock=9039, finishing clock=9178
+Algorithm time(second)=0.0000, starting clock=165513, finishing clock=167491
 dump selected probes, test case name=performance_test_100000_10000:
-P36484	10000	15000
+P27495	10000	15000
