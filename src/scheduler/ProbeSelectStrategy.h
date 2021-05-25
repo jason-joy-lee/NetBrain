@@ -9,7 +9,6 @@
 
 #include <list>
 #include "ProbeLoad.h"
-#include "../util/logger.h"
 
 namespace NetBrain {
 	class ProbeSelectStrategy {

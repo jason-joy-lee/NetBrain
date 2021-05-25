@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <list>
+#include <memory>
 #include "ProbeSelectStrategy.h"
 #include "ProbeLoad.h"
 
@@ -18,8 +19,8 @@ namespace NetBrain {
 	{
 	public:
 		// 最大系统资源容量，最大探针数量，未来从配置文件读取
-		static const size_t MAX_RESOURCE_CAP = 100000;
-		static const size_t MAX_PROBE_CAP = 100000;
+		static const size_t MAX_RESOURCE_CAP = 1000*100;
+		static const size_t MAX_PROBE_CAP = 1000*100;
 
 	public:
 		/**
@@ -36,6 +37,8 @@ namespace NetBrain {
 
 		/**
 		* 重新加载探针负载列表，会清空之前列表，返回更新数量
+		* 1、探针不得重名
+		* 2、默认按照负载倒序排列
 		* @return -1 if open file error
 		*/
 		int reloadProbeLoads(const string& filename);
@@ -46,7 +49,7 @@ namespace NetBrain {
 		/**
 		* 重置资源容量
 		*/
-		void resetCap(int cap);
+		void resetCap(size_t cap);
 
 		/**
 		* @return 获得只读的探针列表
@@ -54,9 +57,9 @@ namespace NetBrain {
 		const vector<ProbeLoad>& getProbeLoads() const;
 
 		// get current system resource capability
-		int getCap() const;
+		size_t getCap() const;
 
-		ProbeScheduler(int cap = 10);
+		ProbeScheduler(size_t cap = 10);
 
 		virtual ~ProbeScheduler();
 
@@ -78,6 +81,6 @@ namespace NetBrain {
 		/**
 		* 系统资源容量
 		*/
-		int m_cap;
+		size_t m_cap;
 	};
 }

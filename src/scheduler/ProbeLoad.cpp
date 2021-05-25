@@ -12,4 +12,14 @@ namespace NetBrain {
 		ism >> probeLoad.name >> probeLoad.load >> probeLoad.value;
 		return ism;
 	}
+
+	bool isGreatByLoad(const ProbeLoad& a, const ProbeLoad& b)
+	{
+		return a.load > b.load;
+	}
+
+	bool isSameProbe(const ProbeLoad& a, const ProbeLoad& b)
+	{
+		return a.name == b.name;
+	}
 }

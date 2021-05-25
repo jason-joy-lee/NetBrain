@@ -9,14 +9,14 @@
 #
 # 2008/7/25, sunjun, 修改：集中用户修改区域，融合clean标签到compiler.mk
 #--------------------------------------------------------------------------
-TGT  = scheduler.so
-SRCS = ProbeLoad.cpp ProbeSelectValueMax.cpp ProbeScheduler.cpp
+TGT  = libscheduler.so
+SRCS = ProbeLoad.cpp ProbeSelectValueMax.cpp ProbeScheduler.cpp ProbeSelectVGreedy.cpp
 
-INCS = 
-LIBS = 
+INCS = -I../
+LIBS = -L../util -lCsvHelper
 
-MY_CPPFLAGS=$(DBMS_DEF)
-MY_CXFLAGS = -std=c++11
+MY_CPPFLAGS=
+MY_CXFLAGS =
 MY_LDFLAGS =
 
 #--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ cleanall:
 #--------------------------------------------------------------------------
 install:$(TGT)
 	@echo "installing..."	
-	cp -f $(TGT) $(NET_BRAIN_ROOT)/bin
+	cp -f $(TGT) $(NET_BRAIN_ROOT)/lib
 	cp -f *.h $(NET_BRAIN_ROOT)/include/scheduler
 	@echo "install complete"
 
@@ -63,7 +63,7 @@ install:$(TGT)
 #--------------------------------------------------------------------------
 update:$(TGT)
 	@echo "updating..."
-	cp -f $(TGT) $(NET_BRAIN_ROOT)/bin
+	cp -f $(TGT) $(NET_BRAIN_ROOT)/lib
 	@echo "update complete"
 
 #--------------------------------------------------------------------------
@@ -71,5 +71,5 @@ update:$(TGT)
 #--------------------------------------------------------------------------
 uninstall:
 	@echo "uninstalling..."
-	rm -f $(NET_BRAIN_ROOT)/bin/$(TGT)
+	rm -f $(NET_BRAIN_ROOT)/lib/$(TGT)
 	@echo "uninstall complete"

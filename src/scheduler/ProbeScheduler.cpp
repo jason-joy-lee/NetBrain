@@ -1,9 +1,11 @@
 #include "ProbeLoad.h"
 #include "ProbeScheduler.h"
-#include "../util/CsvHelper.h"
+#include "util/CsvHelper.h"
+#include "util/logger.h"
 
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 using namespace NetBrain;
 
@@ -20,7 +22,15 @@ void ProbeScheduler::setProbeSelectStrategy(shared_ptr<ProbeSelectStrategy> prob
 
 int ProbeScheduler::reloadProbeLoads(const string& filename)
 {
-	return CsvHelper::loadCSV(filename, m_probeLoads, MAX_PROBE_CAP);
+	int num = CsvHelper::loadCSV(filename, m_probeLoads, MAX_PROBE_CAP);
+
+	// …æ≥˝÷ÿ√˚ÃΩ’Î
+	//std::sort(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isLessByLoad);
+	//std::list<ProbeLoad>::iterator itr = std::unique(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isSameProbe);
+	
+	std::sort(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isGreatByLoad);
+
+	return num;
 }
 
 bool NetBrain::ProbeScheduler::isProbeLoadValid(const ProbeLoad& probeLoad)
@@ -28,9 +38,9 @@ bool NetBrain::ProbeScheduler::isProbeLoadValid(const ProbeLoad& probeLoad)
 	return (!probeLoad.name.empty() && probeLoad.load >= 0 && probeLoad.value >= 0);
 }
 
-void NetBrain::ProbeScheduler::resetCap(int cap)
+void NetBrain::ProbeScheduler::resetCap(size_t cap)
 {
-	if (cap < 0 || cap > MAX_RESOURCE_CAP) {
+	if (cap > MAX_RESOURCE_CAP) {
 		LOG_WARN("Unsupported resource capability, ignored\n");
 		return;
 	}
@@ -47,13 +57,14 @@ const std::vector<ProbeLoad>& NetBrain::ProbeScheduler::getProbeLoads() const
 	return m_probeLoads;
 }
 
-int NetBrain::ProbeScheduler::getCap() const
+size_t NetBrain::ProbeScheduler::getCap() const
 {
 	return m_cap;
 }
 
-NetBrain::ProbeScheduler::ProbeScheduler(int cap)
+NetBrain::ProbeScheduler::ProbeScheduler(size_t cap)
 	:m_pProbeSelectStrategy(new ProbeSelectStrategy())
+	, m_cap(0)
 {
 	resetCap(cap);
 }

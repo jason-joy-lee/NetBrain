@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "../scheduler/ProbeLoad.h"
+#include "scheduler/ProbeLoad.h"
 
 using namespace std;
 

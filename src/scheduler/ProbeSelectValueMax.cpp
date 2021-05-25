@@ -1,4 +1,5 @@
 #include "ProbeSelectValueMax.h"
+#include "util/logger.h"
 #include <memory>
 #include <sstream>
 
@@ -36,7 +37,7 @@ void NetBrain::ProbeSelectValueMax::generateDPTable(vector<vector<int>>& dpTable
 	LOG_DEBUG("forming dynamic programming talbe...<probe, value[1...cap]>\n");
 
 	// 遍历每个探针和每个资源切片，计算出每个(pi, fi)的最大贡献值
-	for (int i = 0; i < probeLoads.size(); i++) {
+	for (size_t i = 0; i < probeLoads.size(); i++) {
 		ostringstream osm;
 		osm << probeLoads[i].name;
 
@@ -79,8 +80,10 @@ list<ProbeLoad> ProbeSelectValueMax::deduceProbes(vector<vector<int>>& dpTable, 
 
 	for (int i=idxP, j=idxR; i >= 0; i--) {
 		// the first probe was selected in the optimal path
-		if (0 == i && dpTable[i][j] != 0) {
-			m_probeSelected.push_back(probeLoads[i]);
+		if (0 == i) {
+			if (dpTable[i][j] != 0) {
+				m_probeSelected.push_back(probeLoads[i]);
+			}
 		}
 		// was selected
 		else if (dpTable[i][j] != dpTable[i - 1][j]) {

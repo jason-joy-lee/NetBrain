@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace NetBrain {
-	class ProbeSelectValueMaxV2 : public ProbeSelectStrategy
+	class ProbeSelectVGreedy : public ProbeSelectStrategy
 	{
 	public:
 		/**
@@ -27,20 +27,16 @@ namespace NetBrain {
 		* 绑定调度器
 		* @param probeScheduler 只读探针调度器
 		*/
-		ProbeSelectValueMaxV2(const ProbeScheduler* probeScheduler);
+		ProbeSelectVGreedy(const ProbeScheduler* probeScheduler);
 
-		virtual ~ProbeSelectValueMaxV2() {}
+		virtual ~ProbeSelectVGreedy() {}
 
 	private:
+		
 		/**
-		* 生成并返回最大贡献值表dpTable
+		* 区间求和，不含end
 		*/
-		void generateDPTable(vector<vector<int>>& dpTable, const vector<ProbeLoad>& probeLoads, int cap);
-
-		/**
-		* 根据dp[idxR]递归倒推出路径
-		*/
-		list<ProbeLoad> deduceProbes(vector<int>& dp, int idxR, const vector<ProbeLoad>& probeLoads, int pi);
+		int sum(vector<ProbeLoad>::iterator begin, vector<ProbeLoad>::iterator end);
 
 	private:
 

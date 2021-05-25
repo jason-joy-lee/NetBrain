@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace NetBrain {
-	class ProbeSelectValueMaxV2 : public ProbeSelectStrategy
+	class ProbeSelectVGreedy : public ProbeSelectStrategy
 	{
 	public:
 		/**
@@ -27,9 +27,9 @@ namespace NetBrain {
 		* 绑定调度器
 		* @param probeScheduler 只读探针调度器
 		*/
-		ProbeSelectValueMaxV2(const ProbeScheduler* probeScheduler);
+		ProbeSelectVGreedy(const ProbeScheduler* probeScheduler);
 
-		virtual ~ProbeSelectValueMaxV2() {}
+		virtual ~ProbeSelectVGreedy() {}
 
 	private:
 		/**

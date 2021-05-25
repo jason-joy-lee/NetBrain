@@ -31,4 +31,10 @@ namespace NetBrain {
 	std::ostream& operator << (std::ostream& osm, const ProbeLoad& probeLoad);
 
 	std::istream& operator >> (std::istream& ism, ProbeLoad& probeLoad);
+
+	// sort by load desc
+	bool isGreatByLoad(const ProbeLoad& a, const ProbeLoad& b);
+
+	// by name
+	bool isSameProbe(const ProbeLoad& a, const ProbeLoad& b);
 }

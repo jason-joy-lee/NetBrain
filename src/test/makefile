@@ -9,14 +9,15 @@
 #
 # 2008/7/25, sunjun, 修改：集中用户修改区域，融合clean标签到compiler.mk
 #--------------------------------------------------------------------------
-TGT  = test
-SRCS = test.cpp
+TGT  = testAll
+SRCS = testAll.cpp
 
-INCS = 
-LIBS = 
+INCS := -I../
+LIBS := -L../util -lscheduler -L../scheduler -lCsvHelper
 
-MY_CPPFLAGS=$(DBMS_DEF) -DLACK_READLINE
-MY_CXFLAGS = -std=c++11
+
+MY_CPPFLAGS=
+MY_CXFLAGS = 
 MY_LDFLAGS =
 
 #--------------------------------------------------------------------------
