@@ -162,7 +162,8 @@ endif
 override LINUX_GNU_LST := $(addprefix Linux., $(GNU_LST))
 ifneq (, $(findstring $(OS).$(CX), $(LINUX_GNU_LST)))
   # common flags
-  CXFLAGS  += -Wall -Winline -finline-functions -fpic
+  #CXFLAGS  += -Wall -Winline -finline-functions -fpic
+  CXFLAGS  += -Winline -finline-functions -fPIC -std=c++11
   LDFLAGS  +=
   CPPFLAGS += -DLINUX
   
@@ -253,7 +254,7 @@ endif
 #--------------------------------------------------------------------------
 ifndef CXFLAGS
   # common flags
-  CXFLAGS  += -Wall
+  CXFLAGS  += 
   LDFLAGS  +=
   CPPFLAGS +=
   
