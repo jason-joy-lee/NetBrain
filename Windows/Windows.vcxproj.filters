@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{a29e5ce1-ec4b-4c3b-8a19-edb0e809203c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\test">
+      <UniqueIdentifier>{97a26de4-da33-45c0-b22a-e60af43b9433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scheduler">
+      <UniqueIdentifier>{1ab8ac27-667c-4c8d-9063-8fee89dbccb9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\scheduler\ProbeLoad.cpp">
+      <Filter>Source Files\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\scheduler\ProbeScheduler.cpp">
+      <Filter>Source Files\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\scheduler\ProbeSelectValueMax.cpp">
+      <Filter>Source Files\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\scheduler\ProbeSelectVGreedy.cpp">
+      <Filter>Source Files\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\CsvHelper.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\test\testAll.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\scheduler\ProbeLoad.h">
+      <Filter>Source Files\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\scheduler\ProbeScheduler.h">
+      <Filter>Source Files\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\scheduler\ProbeSelectStrategy.h">
+      <Filter>Source Files\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\scheduler\ProbeSelectValueMax.h">
+      <Filter>Source Files\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\scheduler\ProbeSelectVGreedy.h">
+      <Filter>Source Files\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\CsvHelper.h">
+      <Filter>Source Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util\logger.h">
+      <Filter>Source Files\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
