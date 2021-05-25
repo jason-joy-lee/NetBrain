@@ -56,6 +56,9 @@ cleanall:
 install:$(TGT)
 	@echo "installing..."	
 	cp -f $(TGT) $(NET_BRAIN_ROOT)/test
+	cp -f test_data_1.csv $(NET_BRAIN_ROOT)/test
+	cp -f test_data_2.csv $(NET_BRAIN_ROOT)/test
+	cp -f test_data_empty.csv $(NET_BRAIN_ROOT)/test
 	@echo "install complete"
 
 #--------------------------------------------------------------------------
