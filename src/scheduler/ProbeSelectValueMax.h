@@ -29,7 +29,7 @@ namespace NetBrain {
 		*/
 		ProbeSelectValueMax(const ProbeScheduler* probeScheduler);
 
-		virtual ~ProbeSelectValueMax() {}
+		virtual ~ProbeSelectValueMax();
 
 	private:
 		/**
@@ -40,7 +40,7 @@ namespace NetBrain {
 		/**
 		* 根据dpTable坐标<P(i), R(j)> ，即：第i个探针的第j个资源切片，推算出对应的探针列表
 		*/
-		list<ProbeLoad> deduceProbes(vector<vector<int>>& dpTable, int idxP, int idxR, const vector<ProbeLoad>& probeLoads);
+		size_t deduceProbes(vector<vector<int>>& dpTable, int idxP, int idxR, const vector<ProbeLoad>& probeLoads);
 
 	private:
 

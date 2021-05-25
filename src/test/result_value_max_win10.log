@@ -14,7 +14,7 @@ Set Probe Scheduler cap -1 failed-1 Resource Cap --> PASS
 Test: 0 Resource Cap, resource cap=0, file name=test_data_1.csv...
 resource capability was set to 0
 Warning! There is no probes or resource
-Algorithm time(second)=0.0000, starting clock=6, finishing clock=6
+Algorithm time(second)=0.0000, starting clock=2, finishing clock=2
 dump selected probes, test case name=0 Resource Cap:
 0 Resource Cap --> PASS
 
@@ -24,16 +24,18 @@ Set Probe Scheduler cap 100001 faileddump selected probes, test case name=Over R
 Over Resource Cap --> PASS
 
 Test: normal_scenario_small_3_5, resource cap=5, file name=./test_data_2.csv...
-Algorithm time(second)=0.0000, starting clock=8, finishing clock=9
+generated a DT table[3][5]
+generated a selected list with size of 2
+Algorithm time(second)=0.0000, starting clock=3, finishing clock=3
 dump selected probes, test case name=normal_scenario_small_3_5:
 p2	2	100
 p3	3	120
 normal_scenario_small_3_5 --> PASS
 
 Test: performance_test_10000_1000, resource cap=1000, file name=./performance_test_10000_1000.csv...
-Algorithm time(second)=44.0000, starting clock=676, finishing clock=45256
+generated a DT table[10000][1000]
+generated a selected list with size of 2
+Algorithm time(second)=56.0000, starting clock=999, finishing clock=57172
 dump selected probes, test case name=performance_test_10000_1000:
 P4060	498	747
 P3456	502	753
-
-Test: performance_test_100000_10000, resource cap=10000, file name=./performance_test_100000_10000.csv...

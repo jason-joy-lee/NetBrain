@@ -27,9 +27,13 @@ list<ProbeLoad> ProbeSelectValueMax::selectProbes()
 	// 生成最大贡献表
 	vector<vector<int>> dpTable(probeLoads.size(), vector<int>(cap, 0));
 	generateDPTable(dpTable, probeLoads, cap);
+	LOG_INFO("generated a DT table[%zu][%zu]\n", dpTable.size(), dpTable[0].size());
 
 	// 根据最后一个探针的最后一个资源切片的最大贡献值，推算出其探针列表
-	return deduceProbes(dpTable, probeLoads.size() - 1, cap - 1, probeLoads);
+	deduceProbes(dpTable, probeLoads.size() - 1, cap - 1, probeLoads);
+	LOG_INFO("generated a selected list with size of %zu\n", m_probeSelected.size());
+	
+	return m_probeSelected;
 }
 
 void NetBrain::ProbeSelectValueMax::generateDPTable(vector<vector<int>>& dpTable, const vector<ProbeLoad>& probeLoads, int cap)
@@ -73,7 +77,7 @@ void NetBrain::ProbeSelectValueMax::generateDPTable(vector<vector<int>>& dpTable
 	}
 }
 
-list<ProbeLoad> ProbeSelectValueMax::deduceProbes(vector<vector<int>>& dpTable, int idxP, int idxR, const vector<ProbeLoad>& probeLoads)
+size_t ProbeSelectValueMax::deduceProbes(vector<vector<int>>& dpTable, int idxP, int idxR, const vector<ProbeLoad>& probeLoads)
 {
 	// clear old data
 	m_probeSelected.clear();
@@ -101,7 +105,7 @@ list<ProbeLoad> ProbeSelectValueMax::deduceProbes(vector<vector<int>>& dpTable, 
 	}
 
 	//cout << "deduceProbes: " << probeSelected << endl;
-	return m_probeSelected;
+	return m_probeSelected.size();
 }
 
 ProbeSelectValueMax::ProbeSelectValueMax(const ProbeScheduler* probeScheduler)
@@ -110,4 +114,11 @@ ProbeSelectValueMax::ProbeSelectValueMax(const ProbeScheduler* probeScheduler)
 	if (NULL == m_probeScheduler) {
 		throw std::invalid_argument("Lack of ProbeScheduler");
 	}
+
+	LOG_DEBUG("constructing ProbeSelectValueMax with Scheduler %p\n", m_probeScheduler);
+}
+
+NetBrain::ProbeSelectValueMax::~ProbeSelectValueMax()
+{
+	LOG_DEBUG("deconstructing ProbeSelectValueMax with Scheduler %p\n", m_probeScheduler);
 }
