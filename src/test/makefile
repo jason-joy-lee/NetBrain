@@ -55,10 +55,10 @@ cleanall:
 #--------------------------------------------------------------------------
 install:$(TGT)
 	@echo "installing..."	
-	cp -f $(TGT) $(NET_BRAIN_ROOT)/test
-	cp -f test_data_1.csv $(NET_BRAIN_ROOT)/test
-	cp -f test_data_2.csv $(NET_BRAIN_ROOT)/test
-	cp -f test_data_empty.csv $(NET_BRAIN_ROOT)/test
+	cp -f $(TGT) $(NET_BRAIN_BUILD)/test
+	cp -f test_data_1.csv $(NET_BRAIN_BUILD)/test
+	cp -f test_data_2.csv $(NET_BRAIN_BUILD)/test
+	cp -f test_data_empty.csv $(NET_BRAIN_BUILD)/test
 	@echo "install complete"
 
 #--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ install:$(TGT)
 #--------------------------------------------------------------------------
 update:$(TGT)
 	@echo "updating..."
-	cp -f $(TGT) $(NET_BRAIN_ROOT)/test
+	cp -f $(TGT) $(NET_BRAIN_BUILD)/test
 	@echo "update complete"
 
 #--------------------------------------------------------------------------
@@ -74,5 +74,5 @@ update:$(TGT)
 #--------------------------------------------------------------------------
 uninstall:
 	@echo "uninstalling..."
-	rm -f $(NET_BRAIN_ROOT)/test/$(TGT)
+	rm -f $(NET_BRAIN_BUILD)/test/$(TGT)
 	@echo "uninstall complete"

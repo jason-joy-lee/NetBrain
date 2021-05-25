@@ -54,8 +54,8 @@ cleanall:
 #--------------------------------------------------------------------------
 install:$(TGT)
 	@echo "installing..."	
-	cp -f $(TGT) $(NET_BRAIN_ROOT)/lib
-	cp -f *.h $(NET_BRAIN_ROOT)/include/util
+	cp -f $(TGT) $(NET_BRAIN_BUILD)/lib
+	cp -f *.h $(NET_BRAIN_BUILD)/include/util
 	@echo "install complete"
 
 #--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ install:$(TGT)
 #--------------------------------------------------------------------------
 update:$(TGT)
 	@echo "updating..."
-	cp -f $(TGT) $(NET_BRAIN_ROOT)/lib
+	cp -f $(TGT) $(NET_BRAIN_BUILD)/lib
 	@echo "update complete"
 
 #--------------------------------------------------------------------------
@@ -71,5 +71,5 @@ update:$(TGT)
 #--------------------------------------------------------------------------
 uninstall:
 	@echo "uninstalling..."
-	rm -f $(NET_BRAIN_ROOT)/lib/$(TGT)
+	rm -f $(NET_BRAIN_BUILD)/lib/$(TGT)
 	@echo "uninstall complete"
