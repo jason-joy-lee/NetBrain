@@ -1,5 +1,6 @@
 /***********************************************************************
- * 在系统资源有限的情况下，选择贡献值最大的一组探针。
+ * 贪心算法，找出接近最优的路径，适合负载与贡献值成正比关系的情况，越成正比，
+ * 越接近最优方案。要求探针列表倒序存储
  *
  * @Author:  jason lee
  * @Date: 2021/5/21
@@ -24,19 +25,12 @@ namespace NetBrain {
 		virtual list<ProbeLoad> selectProbes();
 
 		/**
-		* 绑定调度器
+		* 绑定调度器，但不持有
 		* @param probeScheduler 只读探针调度器
 		*/
 		ProbeSelectVGreedy(const ProbeScheduler* probeScheduler);
 
-		virtual ~ProbeSelectVGreedy() {}
-
-	private:
-		
-		/**
-		* 区间求和，不含end
-		*/
-		int sum(vector<ProbeLoad>::iterator begin, vector<ProbeLoad>::iterator end);
+		virtual ~ProbeSelectVGreedy();
 
 	private:
 
@@ -44,7 +38,7 @@ namespace NetBrain {
 		list<ProbeLoad> m_probeSelected;
 
 		/**
-		* 只读调度器器
+		* 只读调度器
 		*/
 		const ProbeScheduler* m_probeScheduler;
 	};

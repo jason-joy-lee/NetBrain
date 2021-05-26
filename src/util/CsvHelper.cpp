@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-int NetBrain::CsvHelper::loadCSV(const string& filename, vector<ProbeLoad>& probeLoads, size_t maxLine)
+int NetBrain::CsvHelper::loadCSV(const string& filename, vector<ProbeLoad>& probeLoads, size_t maxLine, bool bTrunc)
 {
 	// open file
 	ifstream ism(filename);
@@ -14,8 +14,10 @@ int NetBrain::CsvHelper::loadCSV(const string& filename, vector<ProbeLoad>& prob
 		return -1;
 	}
 
-	// clear original probe loads and point to it
-	probeLoads.clear();
+	// how to deal with original probe loads
+	if (bTrunc) {
+		probeLoads.clear();
+	}
 
 	// load all lines, ignore invalid lines
 	size_t numRead = 0;

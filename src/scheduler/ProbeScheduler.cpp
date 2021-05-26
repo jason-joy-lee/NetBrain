@@ -22,12 +22,13 @@ void ProbeScheduler::setProbeSelectStrategy(shared_ptr<ProbeSelectStrategy> prob
 
 int ProbeScheduler::reloadProbeLoads(const string& filename)
 {
-	int num = CsvHelper::loadCSV(filename, m_probeLoads, MAX_PROBE_CAP);
+	int num = CsvHelper::loadCSV(filename, m_probeLoads, MAX_PROBE_CAP, true);
 
-	// 删除重名探针
-	//std::sort(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isLessByLoad);
-	//std::list<ProbeLoad>::iterator itr = std::unique(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isSameProbe);
+	// 删除重名探针，先按名称排列，再删除相邻相同元素
+	std::sort(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isSameProbe);
+	m_probeLoads.erase( std::unique(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isSameProbe), m_probeLoads.end() );
 	
+	// 按照探针负载降序排列
 	std::sort(m_probeLoads.begin(), m_probeLoads.end(), NetBrain::isGreatByLoad);
 
 	return num;
@@ -46,7 +47,7 @@ void NetBrain::ProbeScheduler::resetCap(size_t cap)
 	}
 
 	if (0 == cap) {
-		LOG_WARN("resource capability was set to 0\n");
+		LOG_WARN("Resource capability was set to 0\n");
 	}
 
 	m_cap = cap;

@@ -16,7 +16,7 @@ using namespace NetBrain;
 #define ASSERT(a, b, name) ( printf("%s --> %s\n", name, (a == b) ? "PASS" : "FAILED"))
 
 // 计算引擎名称
-string g_engine = "ValueMax";
+string g_engine = "Greedy";
 int g_maxLoad = 100, g_cap = 15;
 
 string g_configFileName = "ProbeScheduler.config";
@@ -96,12 +96,12 @@ int runTestCase(const string& testName, const string& filename, int cap, std::li
 }
 
 // 生成大测试数据
-string generateProbeLoads(const string& filename, int maxLoad, double rate)
+void generateProbeLoads(const string& filename, int maxLoad, double rate)
 {
 	ofstream osm(filename);
 	if (!osm) {
 		LOG_ERROR("Failed to create the file %s to wrinte data\n", filename.c_str());
-		return "";
+		return;
 	}
 		
 	srand((unsigned)time(NULL));
@@ -115,7 +115,6 @@ string generateProbeLoads(const string& filename, int maxLoad, double rate)
 	}
 
 	osm.close();
-	return filename;
 }
 
 bool isFileExist(const string& filename) {
@@ -142,11 +141,8 @@ int testPerformance(std::list<ProbeLoad>& probeSelected) {
 	return errCode;
 }
 
-/*
-* test test_data_dir engine
-*		engine=ValueMax, Greedy
-*/
-const char* usage = "test_data_dir=./ engine=ValueMax\n"
+
+const char* usage = "test_data_dir=./ engine=Greedy  max_load  max_resource\n"
 					"\t\tengine = ValueMax, Greedy";
 
 int main(int argc, char* argv[]) {
@@ -208,17 +204,12 @@ int main(int argc, char* argv[]) {
 	dump(probeSelected, testCaseName);
 	ASSERT(errCode, 2, testCaseName);
 
-	// 压力测试 10K : 1K
-	g_maxLoad = 1000*10, g_cap = 1000*1;
-	testPerformance(probeSelected);
-
-	// 扩大10倍 100K ： 10K
-	g_maxLoad = 1000*100, g_cap = 1000*10;
-	testPerformance(probeSelected);
-
-	// 扩大100倍 1000K ： 100K
-//	g_maxLoad = 1000*1000, g_cap = 1000 * 1000*100;
-//	testPerformance(probeSelected);
+	// extended performance test
+	if (argc >= 5) {
+		g_maxLoad = std::atoi(argv[3]);
+		g_cap = std::atoi(argv[4]);
+		testPerformance(probeSelected);
+	}
 
 	return 0;
 }

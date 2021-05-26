@@ -1,0 +1,49 @@
+
+Test: File Not Exist, resource cap=13, file name=./test_data_xyz.csv...
+Failed to open file ./test_data_xyz.csv
+File Not Exist --> PASS
+
+Test: 0 Probes Cap, resource cap=13, file name=./test_data_empty.csv...
+dump selected probes, test case name=0 Probes Cap:
+0 Probes Cap --> PASS
+
+Test: -1 Resource Cap, resource cap=-1, file name=./test_data_1.csv...
+Unsupported resource capability, ignored
+Set Probe Scheduler cap -1 failed-1 Resource Cap --> PASS
+
+Test: 0 Resource Cap, resource cap=0, file name=test_data_1.csv...
+Resource capability was set to 0
+Warning! There is no probes or resource
+Algorithm time(second)=0.0000, starting clock=3, finishing clock=3
+dump selected probes, test case name=0 Resource Cap:
+0 Resource Cap --> PASS
+
+Test: Over Resource Cap, resource cap=100001, file name=test_data_1.csv...
+Unsupported resource capability, ignored
+Set Probe Scheduler cap 100001 faileddump selected probes, test case name=Over Resource Cap:
+Over Resource Cap --> PASS
+
+Test: normal_scenario_small_3_5, resource cap=5, file name=./test_data_2.csv...
+generated a DT table[3][5]
+generated a selected list with size of 2
+Algorithm time(second)=0.0000, starting clock=4, finishing clock=5
+dump selected probes, test case name=normal_scenario_small_3_5:
+p2	2	100
+p3	3	120
+normal_scenario_small_3_5 --> PASS
+
+Test: performance_test_10000_1000, resource cap=1000, file name=./performance_test_10000_1000.csv...
+generated a DT table[10000][1000]
+generated a selected list with size of 2
+Algorithm time(second)=54.0000, starting clock=1088, finishing clock=55235
+dump selected probes, test case name=performance_test_10000_1000:
+P4060	498	747
+P3456	502	753
+
+Test: performance_test_10000_1000, resource cap=1000, file name=./performance_test_10000_1000.csv...
+generated a DT table[10000][1000]
+generated a selected list with size of 2
+Algorithm time(second)=58.0000, starting clock=55887, finishing clock=114018
+dump selected probes, test case name=performance_test_10000_1000:
+P4060	498	747
+P3456	502	753

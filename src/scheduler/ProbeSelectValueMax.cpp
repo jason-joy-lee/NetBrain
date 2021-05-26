@@ -7,21 +7,24 @@ using namespace NetBrain;
 using namespace std;
 
 /**
-* 1、对于每个探针的每个资源切片，计算出其最大贡献值，形成最大贡献值表（状态转移表）。
-	1、状态转移表可能很大，所以在堆内存创建
+* 1、对于每个探针的每个资源切片，计算出其最大贡献值，形成最大贡献值表
+	1、最大贡献值表可能很大，所以在堆内存创建
 	2、资源切片与坐标的转换！！！
 	3、如果没有负载，或者没有资源，则无探针可用
 * 2、最后一个探针的最后一个资源切片即为在资源限定下的最大贡献值
-* 3、根据最大贡献值在状态转移表的坐标，推到出其路径，即包含哪些探针
+* 3、根据最大贡献值在最大贡献值表的坐标，推到出其路径，即包含哪些探针
 */
 list<ProbeLoad> ProbeSelectValueMax::selectProbes()
 {
+	// clear the cached path，先清空以消除语义的二义性
+	m_probeSelected.clear();
+
 	// 获取探针负载列表、资源容量，如果没有负载，或者没有资源，则无探针可用
 	const vector<ProbeLoad>& probeLoads = m_probeScheduler->getProbeLoads();
 	int cap = m_probeScheduler->getCap();
 	if (probeLoads.empty() || cap <= 0) {
 		LOG_WARN("Warning! There is no probes or resource\n");
-		return list<ProbeLoad>();
+		return m_probeSelected;
 	}
 
 	// 生成最大贡献表
