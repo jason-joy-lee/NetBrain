@@ -8,7 +8,7 @@ namespace NetBrain {
 #define LOG_WARN printf
 #define LOG_INFO printf
 
-#ifdef DEBUG
+#ifdef _DEBUG
 #define LOG_DEBUG printf
 #else
 #define LOG_DEBUG 

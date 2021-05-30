@@ -1,5 +1,5 @@
 /***********************************************************************
- * 在系统资源有限的情况下，选择贡献值最大的一组探针。
+ * 动态规划算法，一维数组版
  *
  * @Author:  jason lee
  * @Date: 2021/5/21
@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace NetBrain {
-	class ProbeSelectVGreedy : public ProbeSelectStrategy
+	class ProbeSelectValueMax2 : public ProbeSelectStrategy
 	{
 	public:
 		/**
@@ -27,20 +27,20 @@ namespace NetBrain {
 		* 绑定调度器
 		* @param probeScheduler 只读探针调度器
 		*/
-		ProbeSelectVGreedy(const ProbeScheduler* probeScheduler);
+		ProbeSelectValueMax2(const ProbeScheduler* probeScheduler);
 
-		virtual ~ProbeSelectVGreedy() {}
+		virtual ~ProbeSelectValueMax2() {}
 
 	private:
 		/**
-		* 生成并返回最大贡献值表dpTable
+		* 生成并返回最大贡献值数组dp，以及最大值
 		*/
-		void generateDPTable(vector<vector<int>>& dpTable, const vector<ProbeLoad>& probeLoads, int cap);
+		int generateDPArray(vector<int>& dp, int cap, const vector<ProbeLoad>& probeLoads, int idxP);
 
 		/**
 		* 根据dp[idxR]递归倒推出路径
 		*/
-		list<ProbeLoad> deduceProbes(vector<int>& dp, int idxR, const vector<ProbeLoad>& probeLoads, int pi);
+		int deduceProbes(int maxValue, int cap, const vector<ProbeLoad>& probeLoads, int idxP);
 
 	private:
 

@@ -10,7 +10,7 @@
 # 2008/7/25, sunjun, 修改：集中用户修改区域，融合clean标签到compiler.mk
 #--------------------------------------------------------------------------
 TGT  = libscheduler.so
-SRCS = ProbeLoad.cpp ProbeSelectValueMax.cpp ProbeScheduler.cpp ProbeSelectVGreedy.cpp
+SRCS = ProbeLoad.cpp ProbeSelectValueMax.cpp ProbeScheduler.cpp ProbeSelectVGreedy.cpp ProbeSelectValueMax2.cpp
 
 INCS = -I../
 LIBS = -L../util -lCsvHelper

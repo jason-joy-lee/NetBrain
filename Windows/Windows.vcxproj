@@ -115,7 +115,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\git\NetBrain\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -144,6 +144,7 @@
     <ClCompile Include="..\src\scheduler\ProbeLoad.cpp" />
     <ClCompile Include="..\src\scheduler\ProbeScheduler.cpp" />
     <ClCompile Include="..\src\scheduler\ProbeSelectValueMax.cpp" />
+    <ClCompile Include="..\src\scheduler\ProbeSelectValueMax2.cpp" />
     <ClCompile Include="..\src\scheduler\ProbeSelectVGreedy.cpp" />
     <ClCompile Include="..\src\test\testAll.cpp" />
     <ClCompile Include="..\src\util\CsvHelper.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="..\src\scheduler\ProbeScheduler.h" />
     <ClInclude Include="..\src\scheduler\ProbeSelectStrategy.h" />
     <ClInclude Include="..\src\scheduler\ProbeSelectValueMax.h" />
+    <ClInclude Include="..\src\scheduler\ProbeSelectValueMax2.h" />
     <ClInclude Include="..\src\scheduler\ProbeSelectVGreedy.h" />
     <ClInclude Include="..\src\util\CsvHelper.h" />
     <ClInclude Include="..\src\util\logger.h" />

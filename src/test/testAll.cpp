@@ -3,7 +3,7 @@
 #include "util/CsvHelper.h"
 #include "scheduler/ProbeScheduler.h"
 #include "util/logger.h"
-//#include "scheduler/ProbeSelectValueMaxV2.h"
+#include "scheduler/ProbeSelectValueMax2.h"
 #include "scheduler/ProbeSelectVGreedy.h"
 
 #include <fstream>
@@ -18,20 +18,7 @@ using namespace NetBrain;
 // ¼ÆËãÒýÇæÃû³Æ
 string g_engine = "Greedy";
 int g_maxLoad = 100, g_cap = 15;
-
-string g_configFileName = "ProbeScheduler.config";
 string g_testDataDir = "./";
-
-void initConfig()
-{
-	ifstream ism(g_testDataDir + g_configFileName);
-	if (!ism) {
-		LOG_ERROR("Config file %s missing\n", g_configFileName.c_str());
-		return;
-	}
-
-	ism >> g_maxLoad >> g_cap;
-}
 
 void dump(const std::list<ProbeLoad>& path, const char* testCaseName)
 {
@@ -75,6 +62,9 @@ int runTestCase(const string& testName, const string& filename, int cap, std::li
 	}
 	else if (g_engine == "Greedy") {
 		pStrategy.reset( new ProbeSelectVGreedy(&probeScheduler) );
+	}
+	else if (g_engine == "ValueMax2") {
+		pStrategy.reset(new ProbeSelectValueMax2(&probeScheduler));		
 	}
 	else {
 		LOG_ERROR("Unknown Strategy engine %s\n", g_engine.c_str());
@@ -143,11 +133,9 @@ int testPerformance(std::list<ProbeLoad>& probeSelected) {
 
 
 const char* usage = "test_data_dir=./ engine=Greedy  max_load  max_resource\n"
-					"\t\tengine = ValueMax, Greedy";
+					"\t\tengine = ValueMax, Greedy, ValueMax2";
 
 int main(int argc, char* argv[]) {
-	initConfig();
-
 	// usage
 	if (argc == 2 && strcmp("-h", argv[1]) == 0) {
 		printf("Usage: %s %s\n", argv[0], usage);
